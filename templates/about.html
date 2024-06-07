@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% load static  %}
+
+{% block topcontent %}
+<header class="main-header-back-img" style="background-image: url('{{ main_info.last.image.url }}');">
+    <div class="container-lg padding-for-header-text">
+        <div class="header-text">
+            <h1 class="text-light">{{ main_info.last.title }}</h1>
+            <h5 class="text-light">{{ main_info.last.text }}</h5>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block maincontent %}
+
+<main>
+    {% for info in about_info %}
+    {% if forloop.counter|divisibleby:2 %}
+           <section class="about py-3 py-md-5">
+        <div class="container-lg">
+            <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+                <!--add order-sm-2 to next div to swap img and text-->
+                <div class="col-12 order-sm-2 col-lg-6 col-xl-5">
+                    {% if info.image %}
+                    <img class="img-fluid rounded" loading="lazy" src="{{info.image.url}}" alt="About 1">
+                    {% endif %}
+                </div>
+                <!--add order-sm-1 to next div to swap img and text-->
+                <div class="col-12 order-sm-1 col-lg-6 col-xl-7">
+                    <div class="row justify-content-xl-center">
+                        <div class="col-12 col-xl-11">
+                            <h2 class="mb-3">{{ info.title }}</h2>
+                            <p class="mb-5">{{ info.text }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% else %}
+        <section class="about py-3 py-md-5">
+        <div class="container-lg">
+            <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+                <!--add order-sm-2 to next div to swap img and text-->
+                <div class="col-12 col-lg-6 col-xl-5">
+                    {% if info.image %}
+                    <img class="img-fluid rounded" loading="lazy" src="{{info.image.url}}" alt="About 1">
+                    {% endif %}
+                </div>
+                <!--add order-sm-1 to next div to swap img and text-->
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="row justify-content-xl-center">
+                        <div class="col-12 col-xl-11">
+                            <h2 class="mb-3">{{ info.title }}</h2>
+                            <p class="mb-5">{{ info.text }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+    
+    {% endfor %}
+    <section class="partners">
+        <div class="container-lg mt-5">
+            <h2 class="partners-tile">Our partners</h2>
+             <div class="row">
+            {% for partner in partners %}
+                <div class="col-4 col-lg-2 text-center">
+                    {% if partner.image %}
+                    <img src="{{ partner.image.url }}" class="img-thumbnail img-fluid border border-0 rounded rounded-4" alt="...">
+                    {% endif %}
+                    {% if partner.name %}
+                    <h4 class="card-title pt-3 pb-3 text-secondary">{{ partner.name }}</h4>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+{% block eventscontent %}
+
+{% endblock %}
+
+{% block newscontent %}
+
+{% endblock %}
+
+{% block extracontent %}
+
+{% endblock %}

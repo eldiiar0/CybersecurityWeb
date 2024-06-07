@@ -1,0 +1,127 @@
+{% extends 'index.html' %}
+{% load static  %}
+{% block topcontent %}
+<header class="main-header-back-img" style="background-image: url('{{ main_info.last.image.url }}');">
+    <div class="container-lg padding-for-header-text">
+        <div class="header-text">
+            <h1 class="text-light">{{ main_info.last.title }}</h1>
+            <h5 class="text-light">{{ main_info.last.text }}</h5>
+        </div>
+    </div>
+</header>
+{% endblock %}
+{% block maincontent %}
+<section class="resources">
+    <div class="container-lg mb-5 mt-5 pt-5">
+        <h2 class="res-tile">Resources and Files</h2>
+        <div class="row">
+            {% for resource in resources %}
+            <div class="col-lg-12">
+                <div class="card card-margin">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col align-content-center">
+                                <span>{{resource.title}}</span>
+                            </div>
+                            <div class="col d-flex justify-content-end">
+                                <a href="{% url 'members_area:download_file' resource.id %}" class="btn btn-outline-dark">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block eventscontent %}
+<div class="container-lg">
+    <h2 class="events-tile">Events for you</h2>
+    <div class="row">
+        {% for event in m_events %}
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body pt-">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-meeting-info">
+                                <h5 class="widget-49-pro-title">{{event.title}}</h5>
+                            </div>
+                        </div>
+                        <div class="widget-49-title-wrapper">
+                            <p class="widget-49-meeting-info">{{event.description|slice:100}}</p>
+                        </div>
+                        <div class="widget-49-meeting-action">
+                            <a href="{% url 'members_area:one_event' event.id %}" class="btn btn-sm btn-flash-border-primary">Read</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block newscontent %}
+<div class="container-lg">
+    <h2 class="news-tile">News for you</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for one_news in m_news %}
+        <div class="col">
+            <div class="card h-100">
+                {% if one_news.image %}
+                <img src="{{one_news.image.url}}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{one_news.title}}</h5>
+                    <p class="card-text">{{one_news.description|slice:300}}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="widget-49-meeting-action">
+                        <a href="{% url 'members_area:one_news' one_news.id %}"
+                           class="btn btn-sm btn-flash-border-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extracontent %}
+<section class="contact">
+    <div class="container-lg">
+        <h2>Do you have any questions?</h2>
+        <h4>Fill that form to send your questions to our admin</h4>
+        <div class="col-lg-4 pt-4">
+            <form id="message_form" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="inputTitle" class="form-label">Title</label>
+                    <input type="email" class="form-control" id="inputTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="textArea" class="form-label">Text</label>
+                    <textarea class="form-control" id="textArea" rows="3"></textarea>
+                </div>
+                <button type="submit" form="message_form" value="Submit" class="btn btn-outline-dark">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<!-- {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                <h4 class="alert-success text-center" style="padding-top: 5px; padding-bottom: 5px;">
+                    {{ message }}
+                </h4>
+            </li>
+        {% endfor %}
+     </ul>
+ {% endif %} -->
