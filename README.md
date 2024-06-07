@@ -1,7 +1,9 @@
 # CybersecurityWeb
-web site for Ala-Too Cybersecurity
-For guests and members with admin panel for adding news/events/resources 
+Web site for Ala-Too Cybersecurity, for guests and members with admin panel for adding news/events/resources 
 University project for industrial intership
+### Students:
+Abdyldaev Eldiiar COM20
+Adil Ismailov COM20
 ### Screenshots
 ![Снимок экрана 2024-06-07 090005](https://github.com/eldiiar0/CybersecurityWeb/assets/115143883/d439e63f-5286-412c-9b9d-2bc57b896608)
 ![Снимок экрана 2024-06-07 085950](https://github.com/eldiiar0/CybersecurityWeb/assets/115143883/9db5159f-dfb4-4aaa-bcd1-5ea569a1f0fa)
