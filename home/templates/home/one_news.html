@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static  %}
+
+
+{% block topcontent %}
+{% endblock %}
+{% block maincontent %}
+<section class="one-news">
+    <div class="container-lg">
+        <div class="d-flex row gy-3 gy-md-4 gy-lg-0">
+            <div class="col-12 col-lg-6 col-xl-7">
+                <div class="row justify-content-start">
+                    <div class="col-12 col-xl-11">
+                        <h2 class="mb-3">{{one_news.title}}</h2>
+                        <p>{{one_news.description}}</p>
+                        <p class="text-black-50">{{one_news.date}}</p>
+                    </div>
+                </div>
+            </div>
+            {% if one_news.image %}
+            <h6>Photo:</h6>
+            <div class="col-12 col-lg-6 col-xl-5">
+                <img class="img-fluid rounded" loading="lazy" src="{{one_news.image.url}}" alt="News">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block eventscontent %}
+
+{% endblock %}
+
+{% block newscontent %}
+
+{% endblock %}
+
+{% block extracontent %}
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+{% load static  %}
+
+{% block topcontent %}
+<header class="main-header-back-img" style="background-image: url('{{ main_info.last.image.url }}');">
+    <div class="container-lg padding-for-header-text">
+        <div class="header-text">
+            <h1 class="text-light">{{ main_info.last.title }}</h1>
+            <h5 class="text-light">{{ main_info.last.text }}</h5>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block maincontent %}
+
+    {% for info in home_info %}
+    {% if forloop.counter|divisibleby:2 %}
+           <section class="about py-3 py-md-5">
+        <div class="container-lg">
+            <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+                <!--add order-sm-2 to next div to swap img and text-->
+                <div class="col-12 order-sm-2 col-lg-6 col-xl-5">
+                    {% if info.image %}
+                    <img class="img-fluid rounded" loading="lazy" src="{{info.image.url}}" alt="About 1">
+                    {% endif %}
+                </div>
+                <!--add order-sm-1 to next div to swap img and text-->
+                <div class="col-12 order-sm-1 col-lg-6 col-xl-7">
+                    <div class="row justify-content-xl-center">
+                        <div class="col-12 col-xl-11">
+                            <h2 class="mb-3">{{ info.title }}</h2>
+                            <p class="mb-5">{{ info.text }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {% else %}
+        <section class="about py-3 py-md-5">
+        <div class="container-lg">
+            <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+                <!--add order-sm-2 to next div to swap img and text-->
+                <div class="col-12 col-lg-6 col-xl-5">
+                    {% if info.image %}
+                    <img class="img-fluid rounded" loading="lazy" src="{{info.image.url}}" alt="About 1">
+                    {% endif %}
+                </div>
+                <!--add order-sm-1 to next div to swap img and text-->
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="row justify-content-xl-center">
+                        <div class="col-12 col-xl-11">
+                            <h2 class="mb-3">{{ info.title }}</h2>
+                            <p class="mb-5">{{ info.text }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+    
+    {% endfor %}
+{% endblock %}
+{% block eventscontent %}
+<div class="container-lg">
+    <h2 class="events-tile">Events</h2>
+    <div class="row">
+        {% for event in events %}
+        <div class="col-lg-12">
+            <div class="card card-margin">
+                <div class="card-body pt-">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-meeting-info">
+                                <h5 class="widget-49-pro-title">{{event.title}}</h5>
+                            </div>
+                        </div>
+                        <div class="widget-49-title-wrapper">
+                            <p class="widget-49-meeting-info">{{event.description|slice:200}} ...</p>
+                        </div>
+                        <div class="widget-49-meeting-action">
+                            <a href="{% url 'home:one_event' event.id %}" class="btn btn-sm btn-flash-border-primary">Read</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block newscontent %}
+<div class="container-lg">
+    <h2 class="news-tile">News</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for one_news in news %}
+        <div class="col">
+            <div class="card h-100">
+                {% if one_news.image %}
+                <img src="{{one_news.image.url}}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{one_news.title}}</h5>
+                    <p class="card-text">{{one_news.description|slice:300}} ...</p>
+                </div>
+                <div class="card-footer">
+                    <div class="widget-49-meeting-action">
+                        <a href="{% url 'home:one_news' one_news.id %}"
+                           class="btn btn-sm btn-flash-border-primary">Read</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+        {% block socials %}
+        <ul class="nav col justify-content-center justify-content-lg-start list-unstyled d-flex">
+            <li class="ms-3"><a class="text-dark" href="{{socials.first.facebook}}"><i class="bi bi-facebook h3"></i></a></li>
+            <li class="ms-3"><a class="text-dark" href="{{socials.first.instagram}}"><i class="bi bi-instagram h3"></i></a></li>
+            <li class="ms-3"><a class="text-dark" href="{{socials.first.twitter}}"><i class="bi bi-twitter-x h3"></i></a></li>
+        </ul>
+        {% endblock %}
